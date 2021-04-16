@@ -1,0 +1,5 @@
+*.a
+*.lib
+*.o
+*.pdb
+.DS_Store
