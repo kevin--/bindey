@@ -16,3 +16,8 @@ set_target_properties(
     CXX_STANDARD 11
     CXX_EXTENSIONS off
 )
+
+### add tests to CTest
+include(CTest)
+include(Catch)
+catch_discover_tests(bindey-test)

@@ -42,6 +42,8 @@ set_target_properties(
 ### Tests
 
 if ( BINDEY_BUILD_TESTS )
+  enable_testing()
   add_subdirectory( lib/Catch2 )
+  list( APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Catch2/contrib )
   add_subdirectory( test )
 endif()

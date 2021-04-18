@@ -15,7 +15,7 @@ public:
     {
     }
     property( T&& value )
-    : mStorage( std::move(value) )
+    : mStorage( std::move( value ) )
     {
     }
 
@@ -85,4 +85,4 @@ private:
     T mStorage{};
 };
 
-} // namespace ysp
+} // namespace bindey
