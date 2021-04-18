@@ -86,7 +86,7 @@ public:
      */
     auto onChangedAndNow( typename decltype( changed )::slot_type&& c )
     {
-        auto connection = onChanged( c );
+        auto connection = onChanged( std::move( c ) );
         changed( mStorage );
         return connection;
     }
