@@ -8,7 +8,7 @@ env:
 
 jobs:
   Build-And-Test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
       - name: Configure CMake
         shell: bash
         working-directory: ${{runner.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBINDEY_BUILD_TESTS=ON
+        run: cmake $GITHUB_WORKSPACE -GXCode -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBINDEY_BUILD_TESTS=ON
         env:
           CC: clang
           CXX: clang
