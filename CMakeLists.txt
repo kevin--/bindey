@@ -17,7 +17,7 @@ endif()
 ### Library
 
 list( APPEND FILES_source include/bindey/property.h )
-source_group( TREE include FILES ${FILES_source} )
+source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}/include FILES ${FILES_source} )
 
 add_library( bindey INTERFACE ${FILES_source} )
 target_include_directories(
@@ -32,16 +32,17 @@ target_link_libraries(
     ${BINDEY_NODSIGNAL_TARGET}
 )
 
-set_target_properties(
+target_compile_features(
   bindey
-  PROPERTIES
-    CXX_STANDARD 11
-    CXX_EXTENSIONS off
+  INTERFACE
+    cxx_std_14
 )
 
 ### Tests
 
 if ( BINDEY_BUILD_TESTS )
+  enable_testing()
   add_subdirectory( lib/Catch2 )
+  list( APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Catch2/contrib )
   add_subdirectory( test )
 endif()
