@@ -10,13 +10,6 @@ target_link_libraries(
     Catch2::Catch2
 )
 
-set_target_properties(
-  bindey-test
-  PROPERTIES
-    CXX_STANDARD   14
-    CXX_EXTENSIONS OFF
-)
-
 ### add tests to CTest
 include(CTest)
 include(Catch)

@@ -32,11 +32,10 @@ target_link_libraries(
     ${BINDEY_NODSIGNAL_TARGET}
 )
 
-set_target_properties(
+target_compile_features(
   bindey
-  PROPERTIES
-    CXX_STANDARD   14
-    CXX_EXTENSIONS OFF
+  INTERFACE
+    cxx_std_14
 )
 
 ### Tests
