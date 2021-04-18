@@ -17,7 +17,7 @@ endif()
 ### Library
 
 list( APPEND FILES_source include/bindey/property.h )
-source_group( TREE include FILES ${FILES_source} )
+source_group( TREE include/ FILES ${FILES_source} )
 
 add_library( bindey INTERFACE ${FILES_source} )
 target_include_directories(
