@@ -20,10 +20,10 @@ jobs:
         # We'll use this as our working directory for all subsequent commands
         run: cmake -E make_directory ${{runner.workspace}}/build
 
-      - name: Configure CMake
+      - name: Configure
         shell: bash
         working-directory: ${{runner.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -GXCode -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBINDEY_BUILD_TESTS=ON
+        run: cmake $GITHUB_WORKSPACE -GXcode -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBINDEY_BUILD_TESTS=ON
         env:
           CC: clang
           CXX: clang
