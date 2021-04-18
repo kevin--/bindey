@@ -35,8 +35,8 @@ target_link_libraries(
 set_target_properties(
   bindey
   PROPERTIES
-    CXX_STANDARD 11
-    CXX_EXTENSIONS off
+    CXX_STANDARD   14
+    CXX_EXTENSIONS OFF
 )
 
 ### Tests
