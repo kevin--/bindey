@@ -10,11 +10,6 @@ target_link_libraries(
     Catch2::Catch2
 )
 
-if( UNIX AND (CMAKE_CXX_COMPILER_ID STREQUAL "Clang") )
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -v")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
-endif()
-
 ### add tests to CTest
 include(CTest)
 include(Catch)

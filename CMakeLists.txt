@@ -2,6 +2,12 @@ cmake_minimum_required( VERSION 3.12 )
 
 project( bindey LANGUAGES CXX )
 
+if( ${CMAKE_PROJECT_NAME} STREQUAL bindey )
+  set( CMAKE_CXX_STANDARD          14  ) 
+  set( CMAKE_CXX_STANDARD_REQUIRED ON  )
+  set( CMAKE_CXX_EXTENSIONS        OFF )
+endif()
+
 ### Options
 option( BINDEY_BUILD_TESTS           "Build Tests"             OFF )
 option( BINDEY_USE_BUNDLED_NODSIGNAL "Use Bundled nod::signal" ON  )
