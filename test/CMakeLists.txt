@@ -10,6 +10,10 @@ target_link_libraries(
     Catch2::Catch2
 )
 
+if( UNIX )
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
+endif()
+
 ### add tests to CTest
 include(CTest)
 include(Catch)
