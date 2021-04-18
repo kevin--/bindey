@@ -81,8 +81,19 @@ public:
         return changed.connect( std::move( c ) );
     }
 
+    /**
+     * convience function to attach a change listener to this property and call it right away
+     */
+    auto onChangedAndNow( typename decltype( changed )::slot_type&& c )
+    {
+        auto connection = onChanged( c );
+        changed( mStorage );
+        return connection;
+    }
+
+
 private:
     T mStorage{};
 };
 
-} // namespace ysp
+} // namespace bindey

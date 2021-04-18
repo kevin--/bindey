@@ -43,4 +43,6 @@ TEST_CASE( "Change Notitfcations" )
 
     boolProp.set( true );
     REQUIRE( wasCalled == true );
+
+    boolProp.onChangedAndNow( [&]( const auto& val ) { REQUIRE( val == true ); } );
 }
