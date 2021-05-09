@@ -53,18 +53,32 @@ public:
      * @discussion the value will only be updated if the UpdatePolicy's critera is met.
      * if the value is changed, then the @ref changed event will be fired.
      */
-    void set( T&& value )
+    void set( const T& value )
     {
         if ( UpdatePolicy{}( mStorage, value ) )
         {
-            mStorage = std::forward<T>( value );
+            mStorage = value;
             changed( mStorage );
         }
     }
 
+    void set( T&& value )
+    {
+        if ( UpdatePolicy{}( mStorage, value ) )
+        {
+            mStorage = std::move( value );
+            changed( mStorage );
+        }
+    }
+
+    void operator()( const T& value )
+    {
+        set( value );
+    }
+
     void operator()( T&& value )
     {
-        set( std::forward<T>( value ) );
+        set( std::move( value ) );
     }
 
     /**

@@ -1,4 +1,5 @@
 
+list( APPEND SOURCE_tests binding.test.cpp )
 list( APPEND SOURCE_tests property.test.cpp )
 list( APPEND SOURCE_tests main.cpp )
 

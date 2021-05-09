@@ -16,6 +16,7 @@ endif()
 
 ### Library
 
+list( APPEND FILES_source include/bindey/binding.h )
 list( APPEND FILES_source include/bindey/property.h )
 source_group( TREE ${CMAKE_CURRENT_SOURCE_DIR}/include FILES ${FILES_source} )
 
