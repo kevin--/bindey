@@ -7,10 +7,24 @@
 namespace bindey
 {
 
-template <typename T, typename UpdatePolicy = std::not_equal_to<T>>
+/**
+ * Optional AlwaysUpdate policy to notify subscribers everytime the property value is set, not just when it changes
+ */
+class AlwaysUpdate
+{
+public:
+    template <typename T>
+    bool operator()( const T&, const T& ) const
+    {
+        return true;
+    }
+};
+
+template <typename T, typename UpdatePolicy = std::not_equal_to<T>, typename Signal = nod::unsafe_signal<void( const T& )>>
 class property
 {
 public:
+    
     property()
     {
     }
@@ -71,7 +85,7 @@ public:
      * this signal is invoked whenever the the value changes per the UpdatePolicy
      * @discussion nod::unsafe_signal is used here for speed. Take care of your own threading.
      */
-    nod::unsafe_signal<void( const T& newValue )> changed;
+    Signal changed;
 
     /**
      * convience function to attach a change listener to this property
@@ -95,5 +109,11 @@ public:
 private:
     T mStorage{};
 };
+
+/**
+ * thread safe property type based on nod::signal
+ */
+template <typename T, typename UpdatePolicy = std::not_equal_to<T>>
+using safe_property = property<T, UpdatePolicy, nod::signal<void(const T&)>>;
 
 } // namespace bindey
