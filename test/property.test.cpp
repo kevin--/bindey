@@ -49,7 +49,7 @@ TEST_CASE( "Change Notitfcations" )
 
 TEST_CASE( "Always Update" )
 {
-    bindey::property<bool, bindey::AlwaysUpdate> boolProp;
+    bindey::property<bool, bindey::always_update> boolProp;
     REQUIRE( boolProp() == false );
     
     int count = 0;
