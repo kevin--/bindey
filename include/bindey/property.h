@@ -8,9 +8,9 @@ namespace bindey
 {
 
 /**
- * Optional AlwaysUpdate policy to notify subscribers everytime the property value is set, not just when it changes
+ * Optional always_update policy to notify subscribers everytime the property value is set, not just when it changes
  */
-class AlwaysUpdate
+class always_update
 {
 public:
     template <typename T>
