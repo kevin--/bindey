@@ -51,36 +51,35 @@ TEST_CASE( "Always Update" )
 {
     bindey::property<bool, bindey::always_update> boolProp;
     REQUIRE( boolProp() == false );
-    
+
     int count = 0;
-    boolProp.onChanged([&]( const auto& val )
-    {
+    boolProp.onChanged( [&]( const auto& val ) {
         switch ( count )
         {
             case 0:
                 REQUIRE( val == true );
                 break;
-                
+
             case 1:
                 REQUIRE( val == false );
                 break;
-                
+
             case 2:
                 REQUIRE( val == false );
                 break;
-                
+
             default:
-                FAIL( "callback should not have occured");
+                FAIL( "callback should not have occured" );
                 break;
         }
-        
+
         count++;
-    });
-    
+    } );
+
     boolProp( true );
-    
+
     boolProp( false );
-    
+
     boolProp( false );
 }
 
@@ -98,5 +97,5 @@ TEST_CASE( "safe_property" )
     boolProp.set( true );
     REQUIRE( wasCalled == true );
 
-    boolProp.onChangedAndNow( [&]( const auto& val ) { REQUIRE( val == true ); });
+    boolProp.onChangedAndNow( [&]( const auto& val ) { REQUIRE( val == true ); } );
 }

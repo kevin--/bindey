@@ -20,11 +20,12 @@ public:
     }
 };
 
-template <typename T, typename UpdatePolicy = std::not_equal_to<T>, typename Signal = nod::unsafe_signal<void( const T& )>>
+template <typename T,
+          typename UpdatePolicy = std::not_equal_to<T>,
+          typename Signal       = nod::unsafe_signal<void( const T& )>>
 class property
 {
 public:
-    
     property()
     {
     }
@@ -128,6 +129,6 @@ private:
  * thread safe property type based on nod::signal
  */
 template <typename T, typename UpdatePolicy = std::not_equal_to<T>>
-using safe_property = property<T, UpdatePolicy, nod::signal<void(const T&)>>;
+using safe_property = property<T, UpdatePolicy, nod::signal<void( const T& )>>;
 
 } // namespace bindey
