@@ -37,7 +37,7 @@ binding bind( property<T>& from, property<T>& to )
 template <typename TFrom, typename TTo, typename Converter>
 binding bind( property<TFrom>& from, property<TTo>& to, Converter&& bindingConverter )
 {
-    static_assert( std::is_convertible_v<Converter&&, std::function<TTo( const TFrom& )>>,
+    static_assert( std::is_convertible<Converter&&, std::function<TTo( const TFrom& )>>::value,
                    "Wrong Signature for binding converter!" );
 
     return from.onChanged(
