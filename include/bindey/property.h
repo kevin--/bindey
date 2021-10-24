@@ -20,11 +20,12 @@ public:
     }
 };
 
-template <typename T, typename UpdatePolicy = std::not_equal_to<T>, typename Signal = nod::unsafe_signal<void( const T& )>>
+template <typename T,
+          typename UpdatePolicy = std::not_equal_to<T>,
+          typename Signal       = nod::unsafe_signal<void( const T& )>>
 class property
 {
 public:
-    
     property()
     {
     }
@@ -67,18 +68,32 @@ public:
      * @discussion the value will only be updated if the UpdatePolicy's critera is met.
      * if the value is changed, then the @ref changed event will be fired.
      */
-    void set( T&& value )
+    void set( const T& value )
     {
         if ( UpdatePolicy{}( mStorage, value ) )
         {
-            mStorage = std::forward<T>( value );
+            mStorage = value;
             changed( mStorage );
         }
     }
 
+    void set( T&& value )
+    {
+        if ( UpdatePolicy{}( mStorage, value ) )
+        {
+            mStorage = std::move( value );
+            changed( mStorage );
+        }
+    }
+
+    void operator()( const T& value )
+    {
+        set( value );
+    }
+
     void operator()( T&& value )
     {
-        set( std::forward<T>( value ) );
+        set( std::move( value ) );
     }
 
     /**
@@ -114,6 +129,6 @@ private:
  * thread safe property type based on nod::signal
  */
 template <typename T, typename UpdatePolicy = std::not_equal_to<T>>
-using safe_property = property<T, UpdatePolicy, nod::signal<void(const T&)>>;
+using safe_property = property<T, UpdatePolicy, nod::signal<void( const T& )>>;
 
 } // namespace bindey
